@@ -1,4 +1,4 @@
-# Library Management System 📚
+# Library Management System v2📚
 A GUI based program to manage library resources digitally. 
 > Programming Language used is `Python` with `PYQT6` module for GUI. Database used is `Firebase`.
 
