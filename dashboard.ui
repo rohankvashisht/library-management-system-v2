@@ -13,20 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>140</y>
-     <width>113</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QLineEdit" name="username">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -36,27 +23,27 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QPushButton" name="submit_button">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>140</x>
      <y>80</y>
-     <width>321</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>140</y>
      <width>113</width>
      <height>32</height>
     </rect>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>Say Hello</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="display_field">
+   <property name="geometry">
+    <rect>
+     <x>43</x>
+     <y>128</y>
+     <width>321</width>
+     <height>61</height>
+    </rect>
    </property>
   </widget>
  </widget>
