@@ -10,6 +10,9 @@ Download from this link: (https://sqlitestudio.pl)
 # install module dependencies
 pip3 install -r requirements.txt
 
+# convert .ui designer file into .py file
+python3 -m PyQt6.uic.pyuic test.ui -o test.py
+
 # execute main.py file
 python3 main.py
 ```
