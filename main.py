@@ -47,8 +47,9 @@ class MainApp (QWidget):
     self.close()
 
   def issueBooks(self):
-    # code
-    pass
+    self.issue_books_object = IssueBooks()
+    self.issue_books_object.show()
+    self.close()
 
   def editBooks(self):
     # code
@@ -191,9 +192,59 @@ class AddBooks (QWidget):
     self.connectToDB('StoreBooks.db')
 
     query = QSqlQuery()
-    query.exec(
+    query.prepare(
       f"""INSERT INTO Books (BookID, Title, Author, Edition, Price) VALUES ('{self.input_book_id.text()}','{self.input_book_title.text()}','{self.input_book_author.text()}','{self.input_book_edition.text()}', '{self.input_book_price.text()}')"""
     )
+    query.exec()
+
+    if query.first():
+      print('Book added successfully')
+      self.input_book_id.setText('')
+      self.input_book_title.setText('')
+      self.input_book_author.setText('')
+      self.input_book_edition.setText('')
+      self.input_book_price.setText('')
+    else:
+      print('Unable to add book')
+
+
+  def revertToMainWindow(self):
+    self.mainApp = MainApp()
+    self.mainApp.show()
+    self.close()
+
+class IssueBooks (QWidget):
+  def __init__(self):
+    super().__init__()
+    uic.loadUi('issue_books.ui', self)
+    self.setWindowTitle('Issue Books')
+
+    book_id = self.input_book_id.text()
+    student_id = self.input_student_id.text()
+    return_date = self.input_return_date.text()
+
+    self.button_issue_book.clicked.connect(self.issueBook)
+
+    self.button_back.clicked.connect(self.revertToMainWindow)
+
+  def connectToDB(self, db_name):
+    # https://doc.qt.io/qt-6/sql-driver.html#qsqlite
+
+    db = QSqlDatabase.addDatabase('QSQLITE')
+    db.setDatabaseName(db_name)
+
+    if not db.open():
+      self.label_login_message.setText('Connection failed')
+      print('Error while connecting to database: ', db_name)
+  
+  def issueBook(self):
+    self.connectToDB('StoreBooks.db')
+
+    query = QSqlQuery()
+    query.prepare(
+      f"""INSERT INTO Books (BookID, Title, Author, Edition, Price) VALUES ('{self.input_book_id.text()}','{self.input_book_title.text()}','{self.input_book_author.text()}','{self.input_book_edition.text()}', '{self.input_book_price.text()}')"""
+    )
+    query.exec()
 
     if query.first():
       print('Book added successfully')
